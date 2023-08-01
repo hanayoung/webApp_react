@@ -21,26 +21,26 @@ const File = () => {
     const [minY, setMinY] = useState(9999); // changed부터 minY까지 모두 렌더링을 위해 만든 useState..
 
 
-  const selectImageFromGallery = () => {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = 'image/*'; // reactNative로부터 받아온 이미지 파일
+  const selectImageFromGallery = (event) => {
+    // const fileInput = document.createElement('input');
+    // fileInput.type = 'file';
+    // fileInput.accept = 'image/*'; // reactNative로부터 받아온 이미지 파일
 
-    fileInput.onchange = (e) => {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file); 
-      const image = new Image();   
-      reader.onloadend = () => {
-        console.log(reader.result);
-        image.src = reader.result;  // 34~39 줄은 모델 돌리기 위한 타입 변환 과정
-        setImg(image);
-        runModel(image);
-      } 
-      // Send a message back to React Native
-      window.ReactNativeWebView.postMessage(JSON.stringify(msg));
-    };
-    fileInput.click(); // 카메라/파일 선택하는 dialog 띄우는 부분
+    // fileInput.onchange = (e) => {
+    //   const file = e.target.files[0];
+    //   const reader = new FileReader();
+    //   reader.readAsDataURL(file); 
+    //   const image = new Image();   
+    //   reader.onloadend = () => {
+    //     console.log(reader.result);
+    //     image.src = reader.result;  // 34~39 줄은 모델 돌리기 위한 타입 변환 과정
+    //     setImg(image);
+    //     runModel(image);
+    //   } 
+    //   // Send a message back to React Native
+    //   window.ReactNativeWebView.postMessage(JSON.stringify(msg));
+    // };
+    // fileInput.click(); // 카메라/파일 선택하는 dialog 띄우는 부분
   };
 
   const runModel = async (img) => {
